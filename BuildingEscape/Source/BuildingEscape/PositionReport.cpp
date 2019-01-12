@@ -19,7 +19,8 @@ void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay();
 
-    UE_LOG(LogTemp, Warning, TEXT("Logging is ready for The Chair\n"));
+    FString ObjectName = GetOwner()->GetName();
+    UE_LOG(LogTemp, Warning, TEXT("Logging is ready for %s\n"), *ObjectName);
 	
 }
 
