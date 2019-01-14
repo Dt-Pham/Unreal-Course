@@ -77,7 +77,8 @@ Build/*/**
 **/DerivedDataCache/*
 
 # Ignore starter content for the BuildingEscape
-BuildingEscape/Content/StarterContent
+BuildingEscape/Content/StarterContent/Textures
+BuildingEscape/Content/StarterContent/HDRI
 
 # Ignore system file
 .DS_Store
