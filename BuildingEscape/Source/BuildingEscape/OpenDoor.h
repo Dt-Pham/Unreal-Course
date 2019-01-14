@@ -32,7 +32,6 @@ private:
     UPROPERTY(EditAnyWhere)
     ATriggerVolume* PressurePlate;
 
-	UPROPERTY(EditAnyWhere)
     AActor* ActorThatOpens; // Actor that trigger the door open.
 
     void OpenDoor();
