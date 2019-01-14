@@ -32,7 +32,14 @@ private:
     UPROPERTY(EditAnyWhere)
     ATriggerVolume* PressurePlate;
 
+    UPROPERTY(EditAnyWhere)
+    float DelayTime = 1.f;   // Delay time to close the door
+
+    float LastTimeDoorOpens;
+
     AActor* ActorThatOpens; // Actor that trigger the door open.
+    AActor* Owner;          // The door
 
     void OpenDoor();
+    void CloseDoor();
 };
