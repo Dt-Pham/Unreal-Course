@@ -11,8 +11,6 @@ UGrabber::UGrabber()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -23,11 +21,25 @@ void UGrabber::BeginPlay()
 
     UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!!"));
 
+    // Look for attached physics handle
     PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-
     if (!PhysicsHandle)
     {
-        UE_LOG(LogTemp, Error, TEXT("%s don't have physicshandle"), *(GetOwner()->GetName()));
+        UE_LOG(LogTemp, Error, TEXT("%s don't have physics handle"), *(GetOwner()->GetName()));
+    }
+
+    // Look for attached input component
+    InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+    if (InputComponent)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Input component found"))
+
+        // Bind the input
+        InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("%s don't have input component"), *(GetOwner()->GetName()));
     }
 }
 
@@ -81,3 +93,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
     }
 }
 
+void UGrabber::Grab()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Grab Pressed"))
+}
