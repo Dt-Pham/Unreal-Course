@@ -40,4 +40,7 @@ private:
     void Release();
 
     FHitResult GetFirstPhysicsBodyInReach() const;
+
+    FVector GetLineTraceStart() const;
+    FVector GetLineTraceEnd() const;
 };
