@@ -30,16 +30,21 @@ private:
     float OpenAngle = 90.f;
 
     UPROPERTY(EditAnyWhere)
+    float DelayTime = 1.f;   // Delay time to close the door
+
+    UPROPERTY(EditAnyWhere)
     ATriggerVolume* PressurePlate;
 
     UPROPERTY(EditAnyWhere)
-    float DelayTime = 1.f;   // Delay time to close the door
+    float TriggerMass = 60;
+
 
     float LastTimeDoorOpens;
 
-    AActor* ActorThatOpens; // Actor that trigger the door open.
     AActor* Owner;          // The door
 
     void OpenDoor();
     void CloseDoor();
+
+    float GetTotalMassOnPlate();
 };
