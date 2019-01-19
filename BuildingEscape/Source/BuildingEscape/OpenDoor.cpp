@@ -17,7 +17,6 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
-
     Owner = GetOwner();
 }
 
@@ -30,25 +29,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
     // If the ActorThatOpens overlap the PressurePlate
 	if (GetTotalMassOnPlate() > TriggerMass)
     {
-        OpenDoor();
-        LastTimeDoorOpens = GetWorld()->GetTimeSeconds();
+        OnOpen.Broadcast();
     }
-
-    if (GetWorld()->GetTimeSeconds() - LastTimeDoorOpens > DelayTime)
+    else
     {
-        CloseDoor();
+        OnClose.Broadcast();
     }
-}
-
-void UOpenDoor::OpenDoor()
-{
-    // Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
-    OnOpenRequest.Broadcast();
-}
-
-void UOpenDoor::CloseDoor()
-{
-    Owner->SetActorRotation(FRotator(0.f, 0.f, 0.f));
 }
 
 float UOpenDoor::GetTotalMassOnPlate()
